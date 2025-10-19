@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Crows - Não seja o elo fraco</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav id="side-nav">
+        <div class="nav-line"></div>
+        <ul>
+            <li><a href="#hero" data-nav-id="hero" class="nav-dot"><i class="fas fa-home"></i></a></li>
+            <li><a href="#problem" data-nav-id="problem" class="nav-dot"><i class="fas fa-triangle-exclamation"></i></a></li>
+            <li><a href="#solution" data-nav-id="solution" class="nav-dot"><i class="fas fa-shield-halved"></i></a></li>
+            <li><a href="#contact" data-nav-id="contact" class="nav-dot"><i class="fas fa-envelope"></i></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="hero" data-nav-id="hero">
+            <div class="scanner">
+                <div class="scan-line top"></div>
+                <div class="scan-labels">
+                    <span class="scan-text">Scaneando...</span>
+                    <span class="scan-percentage">0%</span>
+                </div>
+                <div class="scan-line bottom"></div>
+            </div>
+            <div class="container hero-container">
+                <h1 class="fade-in"><i>Lembra quando confiar na internet era fácil?</i></h1>
+                <div class="scroll-indicator fade-in">
+                    <p>Role para descobrir a verdade</p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem" data-nav-id="problem">
+            <div class="container problem-container">
+                <h2 class="fade-in">Mas a <strong class="highlight-text">sua confiança</strong> está sob ataque.</h2>
+                <div class="statistic fade-in">
+                    <div class="big-number">1 em cada 3</div>
+                    <p class="statistic-text">brasileiros foi vítima de golpes virtuais no último ano.</p>
+                    <small>Fonte: Datafolha/FBSP, 2025 - 56 milhões de vítimas</small>
+                </div>
+                <p class="fade-in">Desinformação, malwares e IAs maliciosas tornaram a confiança um artigo de luxo. <br><br><i><strong class="highlight-slogan">Você não deve ser o elo fraco.</strong></i></p>
+            </div>
+        </section>
+
+        <section id="solution" data-nav-id="solution">
+            <div class="container">
+                <div class="solution-header">
+                    <img src="{{ url_for('static', filename='two-crows.png') }}" alt="Two Crows Logo" class="logo fade-in">
+                    <h2 class="fade-in">Two Crows: <strong class="highlight-text">a blindagem digital</strong> que você precisa.</h2>
+                </div>
+                <p class="fade-in solution-description">Nossa IA funciona como um <strong>sistema imunológico digital</strong>, identificando e neutralizando ameaças antes que elas cheguem até você.</p>
+                
+                <div class="features">
+                    <div class="feature fade-in">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0-10-10c0 3.38 1.76 6.37 4.4 8.12"/><path d="M12 2a10 10 0 1 0 10 10c0-3.38-1.76-6.37-4.4-8.12"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/></svg>
+                        <h3>Anti-Fake News</h3>
+                        <p>Análise de texto para detectar padrões de desinformação.</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <h3>Proteção de IA</h3>
+                        <p>Identifica imagens, vídeos e textos gerados artificialmente.</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                        <h3>Antivírus NG</h3>
+                        <p>Defesa proativa contra malwares e phishing de última geração.</p>
+                    </div>
+                    <div class="feature fade-in">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                        <h3>Multi-Browser</h3>
+                        <p>Extensão compatível com Chrome, Firefox, Edge e outros.</p>
+                    </div>
+                </div>
+
+                <div class="demo-container fade-in">
+                    <div class="fake-browser">
+                        <div class="browser-bar">
+                            <div class="browser-dots"><span></span><span></span><span></span></div>
+                            <div class="browser-url">https://site-confiavel.com</div>
+                        </div>
+                        <div class="fake-website">
+                            <p class="safe-message"><i class="fas fa-shield-alt"></i> <strong>Two Crows verificou:</strong> Este site é seguro.</p>
+                            <div class="fake-content">
+                                <h4>Conteúdo Legítimo</h4>
+                                <p>Este site passou por todas as verificações de segurança.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" data-nav-id="contact">
+            <div class="container contact-container">
+                <div class="contact-text">
+                    <h2 class="fade-in">Faça parte da mudança.</h2>
+                    <p class="fade-in">Ajude-nos a construir uma internet mais segura e confiável. Deixe seu contato e feedback.</p>
+                </div>
+                <form class="contact-form fade-in" method="POST" action="/#contact">
+                    <div class="flash-messages">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <input type="text" name="name" placeholder="Seu nome" required>
+                    <input type="email" name="email" placeholder="seu.email@exemplo.com" required>
+                    <select name="interest" required>
+                        <option value="" disabled selected>Qual seu principal interesse?</option>
+                        <option value="academic">Interesse acadêmico</option>
+                        <option value="commercial">Interesse comercial</option>
+                        <option value="personal">Uso pessoal</option>
+                        <option value="other">Outro</option>
+                    </select>
+                    <div class="rating">
+                        <label for="enthusiasm">Qual seu nível de entusiasmo com a proposta?</label>
+                        <div class="rating-numbers">
+                            <span>0</span>
+                            <input type="range" id="enthusiasm" name="enthusiasm" min="0" max="10" step="1" value="5">
+                            <span>10</span>
+                        </div>
+                        <output for="enthusiasm" id="rating-value">5</output>
+                    </div>
+                    <button type="submit">Enviar Feedback</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Two Crows. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

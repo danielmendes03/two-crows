@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      # Monta o volume 'db_data' na pasta 'instance' dentro do container.
+      # Isso garante que o arquivo database.db seja salvo fora do container e persista.
+      - db_data:/app/instance
+
+volumes:
+  db_data:

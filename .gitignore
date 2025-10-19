@@ -1,0 +1,12 @@
+# Ambiente Virtual do Python
+venv/
+*.pyc
+
+# Arquivos gerados pela aplicação
+instance/
+
+# Arquivos de cache do Python
+__pycache__/
+
+# Arquivos de sistema
+.DS_Store
