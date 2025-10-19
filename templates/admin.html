@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registos da Base de Dados - Two Crows</title>
+    <style>
+        body { font-family: sans-serif; margin: 0; background-color: #f4f4f9; color: #333; }
+        .container { max-width: 1200px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { color: #171658; border-bottom: 2px solid #ececec; padding-bottom: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f8f8f8; font-weight: 600; }
+        tr:hover { background-color: #f1f1f1; }
+        .empty { text-align: center; color: #777; padding: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registos de Feedback - Two Crows</h1>
+        
+        {% if submissions %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Interesse</th>
+                        <th>Entusiasmo</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for submission in submissions %}
+                        <tr>
+                            <td>{{ submission.id }}</td>
+                            <td>{{ submission.name }}</td>
+                            <td>{{ submission.email }}</td>
+                            <td>{{ submission.interest }}</td>
+                            <td>{{ submission.enthusiasm }}</td>
+                            <td>{{ submission.timestamp.strftime('%d/%m/%Y %H:%M') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="empty">Nenhum registo encontrado na base de dados.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
