@@ -7,19 +7,25 @@ from flask_sqlalchemy import SQLAlchemy
 
 # --- CONFIGURAÇÃO DA APLICAÇÃO ---
 app = Flask(__name__)
-
-# Chave secreta para sessões e mensagens flash
-app.config['SECRET_KEY'] = os.urandom(24)
-
-# Chave secreta para a nossa página de administração (guarde esta chave em segurança!)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', os.urandom(24))
 ADMIN_SECRET_KEY = os.environ.get('ADMIN_SECRET_KEY')
 
-# Configuração da base de dados (caminho para o volume persistente do Docker)
-db_path = os.path.join('/app/instance', 'database.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_path
+# --- Configuração da Base de Dados PostgreSQL ---
+db_uri = os.environ.get('DATABASE_URL')
+if db_uri and db_uri.startswith("postgres://"):
+    db_uri = db_uri.replace("postgres://", "postgresql://", 1)
+
+# Fallback para SQLite local se a DATABASE_URL não estiver definida
+if not db_uri:
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    instance_path = os.path.join(basedir, 'instance')
+    os.makedirs(instance_path, exist_ok=True)
+    db_path = os.path.join(instance_path, 'database.db')
+    db_uri = 'sqlite:///' + db_path
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Inicialização da base de dados
 db = SQLAlchemy(app)
 
 # --- VALIDAÇÃO COM REGEX ---
@@ -36,6 +42,13 @@ class Submission(db.Model):
 
     def __repr__(self):
         return f'<Submission {self.name} - {self.email}>'
+
+# --- ATUALIZADO: Inicializa a base de dados ao arrancar ---
+# Este bloco de código será executado quando a aplicação for iniciada no Render.
+# Ele cria as tabelas na base de dados PostgreSQL se elas ainda não existirem.
+with app.app_context():
+    db.create_all()
+# ---------------------------------------------------------
 
 # --- ROTAS DA APLICAÇÃO ---
 @app.route('/', methods=['GET', 'POST'])
@@ -64,29 +77,23 @@ def home():
 
     return render_template('index.html')
 
-# --- NOVA ROTA DE ADMINISTRAÇÃO ---
 @app.route('/admin-view/<secret_key>')
 def admin_view(secret_key):
-    # 1. Verifica se a chave secreta no URL está correta
     if secret_key != ADMIN_SECRET_KEY:
-        # Se a chave estiver errada, retorna um erro "Não encontrado" para não revelar que a página existe.
         abort(404)
     
-    # 2. Consulta todos os registos da base de dados, ordenados do mais recente para o mais antigo
     all_submissions = Submission.query.order_by(Submission.timestamp.desc()).all()
     
-    # 3. Renderiza o novo template 'admin.html', passando os dados
     return render_template('admin.html', submissions=all_submissions)
 
-# Comando para criar a base de dados via terminal
+# --- Comando init-db (ainda útil para desenvolvimento local) ---
 @app.cli.command('init-db')
 def init_db_command():
     """Cria as tabelas da base de dados."""
     db.create_all()
-    print('Base de dados inicializada.')
+    print('Base de dados inicializada e tabelas criadas.')
 
-# --- INICIALIZAÇÃO DO SERVIDOR ---
-# (Este bloco é usado pelo Gunicorn dentro do Docker)
+# --- INICIALIZAÇÃO DO SERVIDOR (para desenvolvimento local) ---
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='0.0.0.0', debug=True)
 
